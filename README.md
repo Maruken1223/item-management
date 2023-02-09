@@ -33,3 +33,19 @@ $ npm run dev
 ```
 $ php artisan migrate
 ```
+
+### 新しいブランチの作成方法
+
+// ① 最新（他者の変更も取り込まれている）のブランチに移動
+git checkout main
+
+// ② originをpullする
+git pull origin main
+
+// ③ チェックアウトする
+git checkout -b {任意の名前}
+例 git checkout -b feat/add-login-page
+
+
+
+
