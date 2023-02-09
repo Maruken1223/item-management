@@ -45,7 +45,7 @@ git pull origin main
 // ③ チェックアウトする
 git checkout -b {任意の名前}
 例 git checkout -b feat/add-login-page
-
+```
 
 
 
