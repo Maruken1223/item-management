@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass assignable. 
      *
      * @var array<int, string>
      */
@@ -33,4 +33,24 @@ class Item extends Model
      */
     protected $casts = [
     ];
+
+    /**
+     * 編集商品データを取得
+     *
+     * @param  $item_id
+     * @return void
+     */
+    public function selectEditItemFindById($item_id)
+    {
+        $query = $this->select([
+            'id',
+            'name',
+            'type',
+            'detail',
+        ])->where([
+            'id' => $item_id
+        ]);
+
+        return $query->first();
+    }
 }

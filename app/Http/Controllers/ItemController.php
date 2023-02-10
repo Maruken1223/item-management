@@ -9,14 +9,17 @@ use App\Models\Item;
 class ItemController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * コンストラクタ
      */
-    public function __construct()
+    protected $item;
+
+    public function __construct(Item $edit_item)
     {
         $this->middleware('auth');
+
+        $this->item = $edit_item;
     }
+
 
     /**
      * 商品一覧
@@ -57,4 +60,24 @@ class ItemController extends Controller
 
         return view('item.add');
     }
+
+
+    /**
+     * 商品編集画面表示
+     *
+     * @param request $id
+     * @return Response
+     */
+    public function Item_edit($item_id, Request $request)
+    {
+        // URLから商品IDを取得
+        $item_id = $request->id;
+
+        // 指定した商品のデータを取得
+        $edit_item = $this->item->selectEditItemFindById($item_id);
+        // dd($edit_item);
+        return view('item.edit', compact('edit_item'));
+    }
+
+    
 }
