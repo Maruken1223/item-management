@@ -53,4 +53,22 @@ class Item extends Model
 
         return $query->first();
     }
+
+    /**
+     * 商品データ更新
+     * @param Request $edit_item
+     * @return Response
+     * 
+     */
+
+    public function updateItemFindById($edit_item)
+    {
+        return $this->where([
+            'id' => $edit_item['id']
+        ])->update([
+            'name' => $edit_item['name'],
+            'type' => $edit_item['type'],
+            'detail' => $edit_item['detail'],
+        ]);
+    }
 }

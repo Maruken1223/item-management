@@ -79,5 +79,20 @@ class ItemController extends Controller
         return view('item.edit', compact('edit_item'));
     }
 
-    
+
+    /**
+     * 商品データ更新後->商品一覧画面へ遷移
+     * 
+     * 
+     */
+    public function Item_update(Request $request,$id)
+    {
+        $edit_item = $request->post();
+
+        $edit_item['id'] = $id; 
+       
+        $this->item->updateItemFindById($edit_item);
+
+        return redirect()->route('itemindex');
+    }
 }
