@@ -85,14 +85,27 @@ class ItemController extends Controller
      * 
      * 
      */
-    public function Item_update(Request $request,$id)
+    public function Item_update(Request $request, $id)
     {
         $edit_item = $request->post();
 
         $edit_item['id'] = $id; 
-       
+
         $this->item->updateItemFindById($edit_item);
 
+        return redirect()->route('itemindex');
+    }
+
+    /**
+     * 商品データ削除後->商品一覧画面へ遷移
+     * 
+     * 
+     */
+    public function Item_destroy($id)
+    {
+        // 指定されたIDのレコードを削除
+        $deleteItem = $this->item->deleteItemById($id);
+        // 削除したら一覧画面にリダイレクト
         return redirect()->route('itemindex');
     }
 }
