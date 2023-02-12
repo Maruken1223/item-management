@@ -71,4 +71,12 @@ class Item extends Model
             'detail' => $edit_item['detail'],
         ]);
     }
+
+    /**
+     * 削除処理
+     */
+    public function deleteItemById($id)
+    {
+        return $this->destroy($id);
+    }
 }
