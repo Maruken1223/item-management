@@ -45,6 +45,7 @@ class ItemController extends Controller
             // バリデーション
             $this->validate($request, [
                 'name' => 'required|max:100',
+                'type' => 'required|integer',
             ]);
 
             // 商品登録
@@ -77,6 +78,9 @@ class ItemController extends Controller
         $edit_item = $this->item->selectEditItemFindById($item_id);
         // dd($edit_item);
         return view('item.edit', compact('edit_item'));
+
+
+
     }
 
 
@@ -86,10 +90,16 @@ class ItemController extends Controller
      * 
      */
     public function Item_update(Request $request, $id)
-    {
+    { 
+        $request->validate([
+            'name' => 'required|string',
+            'type' => 'required|integer',
+            'detail' => 'nullable',
+        ]);
+
         $edit_item = $request->post();
 
-        $edit_item['id'] = $id; 
+        $edit_item['id'] = $id;
 
         $this->item->updateItemFindById($edit_item);
 
