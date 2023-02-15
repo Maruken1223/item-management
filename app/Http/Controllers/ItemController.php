@@ -24,7 +24,7 @@ class ItemController extends Controller
     /**
      * 商品一覧
      */
-    public function index()
+    public function index(Request $request)
     {
         // 商品一覧取得
         $items = Item
@@ -32,7 +32,26 @@ class ItemController extends Controller
             ->select()
             ->get();
 
-        return view('item.index', compact('items'));
+        // 検索フォームで入力された値を取得する
+        $keyword = $request->input('keyword');
+
+        // クエリビルダ
+        $query = Item::query();
+
+        // もし検索フォームにキーワードが入力されたら
+        if (!empty($keyword)) {
+
+            // whereメソッドでLIKE検索を指定し、$keywordの両側に%をつけることで、
+            // 部分一致検索を行います。またorWhereメソッドでOR検索
+            $query->where('id','LIKE',"%{$keyword}%")
+                ->orWhere('name','LIKE',"%{$keyword}%")
+                ->orWhere('type','LIKE',"%{$keyword}%")
+                ->orWhere('detail','LIKE',"%{$keyword}%");
+            }
+
+            $items = $query->get();
+
+        return view('item.index',compact('items','keyword'));
     }
 
     /**
@@ -78,9 +97,6 @@ class ItemController extends Controller
         $edit_item = $this->item->selectEditItemFindById($item_id);
         // dd($edit_item);
         return view('item.edit', compact('edit_item'));
-
-
-
     }
 
 
@@ -90,7 +106,7 @@ class ItemController extends Controller
      * 
      */
     public function Item_update(Request $request, $id)
-    { 
+    {
         $request->validate([
             'name' => 'required|string',
             'type' => 'required|integer',
