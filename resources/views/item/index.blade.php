@@ -80,6 +80,7 @@
                 </table>
             </div>
         </div>
+        {!! $items->links() !!}
     </div>
 </div>
 @stop

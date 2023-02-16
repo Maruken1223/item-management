@@ -27,12 +27,6 @@ class ItemController extends Controller
      */
     public function index(Request $request)
     {
-        // 商品一覧取得
-        $items = Item
-            ::where('items.status', 'active')
-            ->select()
-            ->get();
-
         // 検索フォームで入力された値を取得する
         $keyword = $request->input('keyword');
 
@@ -50,12 +44,12 @@ class ItemController extends Controller
                 ->orWhere('detail', 'LIKE', "%{$keyword}%");
         }
 
-        $items = $query->get();
+        $items = $query->orderByDesc('created_at')->paginate(20);
 
         return view('item.index', compact('items', 'keyword'));
 
         $cb = new Carbon();
-        echo $cb; //　2020-05-20 14:13:30
+        echo $cb;
     }
 
     /**
