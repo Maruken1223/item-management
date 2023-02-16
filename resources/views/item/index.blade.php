@@ -56,6 +56,7 @@
                             <th>名前</th>
                             <th>種別</th>
                             <th>詳細</th>
+                            <th>登録日</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,6 +66,7 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->type }}</td>
                             <td>{{ $item->detail }}</td>
+                            <td>{{ Carbon\Carbon::now()->format('Y年m月d日') }}</td>
                             <td>
                                 <div class="input-group-append justify-content-end">
                                     <a href="{{ url('items/edit/'.$item->id) }}" class="btn btn-dark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">

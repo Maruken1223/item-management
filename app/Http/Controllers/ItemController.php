@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
+use Carbon\Carbon;
 
 class ItemController extends Controller
 {
@@ -43,15 +44,18 @@ class ItemController extends Controller
 
             // whereメソッドでLIKE検索を指定し、$keywordの両側に%をつけることで、
             // 部分一致検索を行います。またorWhereメソッドでOR検索
-            $query->where('id','LIKE',"%{$keyword}%")
-                ->orWhere('name','LIKE',"%{$keyword}%")
-                ->orWhere('type','LIKE',"%{$keyword}%")
-                ->orWhere('detail','LIKE',"%{$keyword}%");
-            }
+            $query->where('id', 'LIKE', "%{$keyword}%")
+                ->orWhere('name', 'LIKE', "%{$keyword}%")
+                ->orWhere('type', 'LIKE', "%{$keyword}%")
+                ->orWhere('detail', 'LIKE', "%{$keyword}%");
+        }
 
-            $items = $query->get();
+        $items = $query->get();
 
-        return view('item.index',compact('items','keyword'));
+        return view('item.index', compact('items', 'keyword'));
+
+        $cb = new Carbon();
+        echo $cb; //　2020-05-20 14:13:30
     }
 
     /**
