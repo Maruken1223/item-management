@@ -29,3 +29,9 @@ Route::prefix('items')->group(function () {
     Route::get('/edit/{id}', [App\Http\Controllers\ItemController::class, 'Item_edit'])->name('itemedit');    
     Route::post('/destroy/{id}', [App\Http\Controllers\ItemController::class, 'Item_destroy'])->name('itemdestroy');    
 });
+
+
+Route::prefix('users')->group(function () {
+    Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('userindex');
+
+});
