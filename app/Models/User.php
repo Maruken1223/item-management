@@ -42,4 +42,50 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    /**
+     * ユーザーデータを編集
+     *
+     * @param  $user_id
+     * @return void
+     */
+    public function selectEditUserFindById($user_id)
+    {
+        $query = $this->select([
+            'id',
+            'name',
+            'email',
+        ])->where([
+            'id' => $user_id
+        ]);
+
+        return $query->first();
+    }
+
+
+    /**
+     * ユーザーデータ更新
+     * @param Request $edit_user
+     * @return Response
+     * 
+     */
+
+     public function updateUserFindById($edit_user)
+     {
+         return $this->where([
+             'id' => $edit_user['id']
+         ])->update([
+             'name' => $edit_user['name'],
+             'email' => $edit_user['email'],
+         ]);
+     }
+ 
+     /**
+      * 削除処理
+      */
+     public function deleteUserById($id)
+     {
+         return $this->destroy($id);
+     }
 }
