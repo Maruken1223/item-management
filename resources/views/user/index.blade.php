@@ -53,7 +53,11 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->role }}</td>
+                            @if($user->role == 0 )
+                            <td>一般</td>
+                            @else
+                            <td>管理者</td>
+                            @endif
                             <td>{{ Carbon\Carbon::now()->format('Y年m月d日') }}</td>
                             <td>
                                 <div class="input-group-append justify-content-end">
@@ -68,6 +72,8 @@
                 </table>
             </div>
         </div>
+        {!! $users->links() !!}
+
     </div>
 </div>
 @stop
