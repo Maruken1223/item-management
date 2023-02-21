@@ -77,7 +77,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required| string| email:filter,dns| max:255 ',
+            'email' => 'required| email:filter,dns| max:255 ',
         ]);
 
         $edit_user = $request->post();
