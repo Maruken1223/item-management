@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'ユーザー一覧')
+@section('title', 'ユーザー編集')
 
 @section('content_header')
 <h1><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
