@@ -52,7 +52,7 @@
         ]
     },
     "compile": [
-        "@php -r \"file_exists('.env') " 
+        "@php -r \"file_exists('.env') || copy('.env.heroku', '.env');\""
     ],
 
     "extra": {
