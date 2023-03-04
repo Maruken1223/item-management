@@ -1,51 +1,35 @@
-## 商品管理システム
+# 商品管理システム
 
-### 環境構築手順
+##　概要
 
-* Gitクローン
-* .env.example をコピーして .env を作成
-* MySQLかPostgreSQLのデータベース作成（名前：item_management）  
-  ローカルでMAMPを使用しているのであれば、MySQL推奨
-* .env にデータベース接続情報追加
+このシステムでは店舗扱う商品の在庫管理を行うことができます。
+
+商品の新規登録から編集。削除を行うことができ、各商品の在庫を調整することができます。
+
+## 主な機能
+- ログイン・ログアウト機能
+- 商品一覧画面
+- 商品新規登録、編集、削除機能
+- ユーザー一覧画面
+- ユーザー新規登録、編集、削除機能
+- ページネーション機能
+- 商品・ユーザー検索機能
+
+## 開発環境
 ```
-例）
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=item_management
-DB_USERNAME=root
-DB_PASSWORD=root
-```
-* APP_KEY生成
-```
-$ php artisan key:generate
-```
-* Composerインストール
-```
-$ composer install
-```
-* フロント環境構築
-```
-$ npm install
-$ npm run dev
-```
-* マイグレーション
-```
-$ php artisan migrate
+PHP 8.1.15
+phpMyAdmin 5.1.1
+Laravel 8.83.27
 ```
 
-### 新しいブランチの作成方法
+## 設計書
+[設計書ページへ](https://drive.google.com/open?id=1G5AN4Z1vX_zWviB9aALP58MorWOQMbGm&usp=drive_copy)
+
+## システム閲覧
+[アプリケーションページへ](https://nameless-falls-69915.herokuapp.com/login)
+
+### テストアカウント情報
 ```
-// ① 最新（他者の変更も取り込まれている）のブランチに移動
-git checkout main
-
-// ② originをpullする
-git pull origin main
-
-// ③ チェックアウトする
-git checkout -b {任意の名前}
-例 git checkout -b feat/add-login-page
+メールアドレス：techis.taro@gmail.com
+パスワード：techis.taro@gmail.com
 ```
-
-
-
